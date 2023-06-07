@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { env } from "~/env.mjs";
 import {
   createTRPCRouter,
   publicProcedure,
@@ -10,7 +11,7 @@ export const exampleRouter = createTRPCRouter({
     .input(z.object({ text: z.string() }))
     .query(({ input }) => {
       return {
-        greeting: `Hello ${input.text}`,
+        greeting: `Hello ${input.text} in ${env.NODE_ENV} environment`,
       };
     }),
 

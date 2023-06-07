@@ -26,10 +26,10 @@ This is a [Next.js](https://nextjs.org/) project. You might want to understand t
 - [tRPC](https://trpc.io/) for connecting to backend
 - [T3env](https://env.t3.gg/) and [zod](https://zod.dev/) for handling environment variables. Zod can also be used for state management
 - [Husky](https://typicode.github.io/husky/) for git hooks
+- [Jest](https://jestjs.io/) for testing APIs
 
 Some libraries/frameworks to consider as more functionality is needed:
 
-- [Jest](https://jestjs.io/) for testing APIs
 - [Vercel](https://planetscale.com/) for hosting
 - [Planetscale](https://planetscale.com/) for database hosting. Will probably use mySQL or Postgres
 - [Drizzle ORM](https://orm.drizzle.team/) or [Prisma](https://www.prisma.io/) for ORM and database migrations
@@ -41,7 +41,7 @@ Maintain high-level tasks here. Remember to update the status and add notes if r
 ### TODOs
 
 - ✅ Add Husky hooks
-- 💭 Add API test
+- ✅ Add API test
 - 💭 Add Authentication
 - 💭 Add Layout
   - 💭 Add NavBar
