@@ -12,12 +12,7 @@ export default function Layout({ children }: PropsWithChildren) {
           <Image src="/OD text.png" width="100" height="100" alt="Home" />
         </Link>
         <Link href="/musings">
-          <Image
-            src="/thought bubble.png"
-            width="100"
-            height="100"
-            alt="Musings"
-          />
+          <Image src="/Bubble.png" width="100" height="100" alt="Musings" />
         </Link>
       </nav>
       {status === "authenticated" && <nav>Private</nav>}

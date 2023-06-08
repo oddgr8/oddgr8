@@ -8,6 +8,8 @@ export default function Document() {
     >
       <Head>
         <link rel="icon" href="/Logo.png" />
+        <title>Onkar Deshpande</title>
+        <meta name="description" content="Homepage for Onkar Deshpande" />
       </Head>
       <body className="bg-shade-light dark:bg-shade-dark">
         <Main />

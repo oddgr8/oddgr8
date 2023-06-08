@@ -44,7 +44,7 @@ Maintain high-level tasks here. Remember to update the status and add notes if r
 - ✅ Add API test
 - 💭 Add Authentication
 - 💭 Add Layout
-  - 💭 Add NavBar
+  - ✅ Add NavBar
   - 💭 Add Private pages
 - 💭 Add Home page
   - 💭 Add Projects list
