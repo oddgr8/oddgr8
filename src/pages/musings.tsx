@@ -4,17 +4,9 @@ import Link from "next/link";
 import { titleFont } from "~/shared/fonts";
 import { faArrowUpRightFromSquare } from "@fortawesome/free-solid-svg-icons";
 
-const Home: NextPage = () => {
+function Musing() {
   return (
-    <div className="flex w-full max-w-2xl flex-col place-items-center p-10 text-start">
-      <p className={"text-3xl lg:text-4xl" + titleFont}>Behold...</p>
-      <h1 className={"text-7xl text-main lg:text-8xl" + titleFont}>
-        My Stuff!
-      </h1>
-      <p className={"my-5"}>
-        I plan to add my blog here. Until that I do that, here are some things I
-        found interesting:
-      </p>
+    <>
       {[
         {
           link: "https://youtu.be/gnUYoQ1pwes",
@@ -60,8 +52,24 @@ const Home: NextPage = () => {
           <p className="opacity-50">{ele.author}</p>
         </Link>
       ))}
+    </>
+  );
+}
+
+const Musings: NextPage = () => {
+  return (
+    <div className="flex w-full max-w-2xl flex-col place-items-center p-10 text-start">
+      <p className={"text-3xl lg:text-4xl" + titleFont}>Behold...</p>
+      <h1 className={"text-7xl text-main lg:text-8xl" + titleFont}>
+        My Stuff!
+      </h1>
+      <p className={"my-5"}>
+        I plan to add my blog here. Until that I do that, here are some things I
+        found interesting:
+      </p>
+      <Musing />
     </div>
   );
 };
 
-export default Home;
+export default Musings;
