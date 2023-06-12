@@ -42,10 +42,10 @@ Maintain high-level tasks here. Remember to update the status and add notes if r
 
 - ✅ Add Husky hooks
 - ✅ Add API test
-- 💭 Add Authentication
-- 💭 Add Layout
+- ✅ Add Authentication
+- ✅ Add Layout
   - ✅ Add NavBar
-  - 💭 Add Private pages
+  - ✅ Add Private pages
 - ✅ Add Home page
   - 💭 Add Projects list
 - ✅ Add Blog page
