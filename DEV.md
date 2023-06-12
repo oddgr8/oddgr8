@@ -46,9 +46,9 @@ Maintain high-level tasks here. Remember to update the status and add notes if r
 - 💭 Add Layout
   - ✅ Add NavBar
   - 💭 Add Private pages
-- 💭 Add Home page
+- ✅ Add Home page
   - 💭 Add Projects list
-- 💭 Add Blog page
+- ✅ Add Blog page
 - 💭 Add private pages
   - 💭 Add database connection
   - 💭 Add expenses page
