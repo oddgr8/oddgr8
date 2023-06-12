@@ -23,13 +23,15 @@ const Musings: NextPage = () => {
           I&apos;m an incoming MS in CS student at Stanford University.
         </p>
         <p className="mt-5 text-xl">
-          I have a bachelors degree in CS from IIT Bombay and I have interned in
-          theoretical CS at TU Braunschweig. I worked at Rubrik India for a
-          couple years in the cloud native workload protection team.
+          I have a bachelor&apos;s degree in CS from IIT Bombay, research
+          experience in theoretical CS from my internship at TU Braunschweig and
+          two years of industry experience from working in the cloudnative
+          workload protection team at Rubrik India.
         </p>
         <p className="mt-5 text-xl">
           I&apos;m into distributed systems and blockchain. I like reading Math,
-          Physics and a bit of Philosophy too.
+          Physics and a bit of Philosophy too. Right now I&apos;m trying to
+          learn Rust. I play Age of Empires 2 in my free time.
         </p>
       </div>
       <div className="flex flex-col place-items-center">
