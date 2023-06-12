@@ -26,7 +26,7 @@ function Navbar({
   priv,
   withThemer,
 }: {
-  links: { text: string; subroot: string }[];
+  links: { text: string; path: string }[];
   priv?: boolean;
   withThemer?: boolean;
 }) {
@@ -44,9 +44,9 @@ function Navbar({
       }
     >
       <div className="flex flex-row gap-4 text-4xl">
-        {links.map(({ text, subroot }) => (
-          <Link key={text} href={"/" + subroot} className="m-2">
-            <div className={page == subroot ? "text-main" : ""}>{text}</div>
+        {links.map(({ text, path }) => (
+          <Link key={text} href={"/" + path} className="m-2">
+            <div className={page == path ? "text-main" : ""}>{text}</div>
           </Link>
         ))}
       </div>
@@ -62,11 +62,17 @@ export default function Layout({ children }: PropsWithChildren) {
         <Navbar
           withThemer
           links={[
-            { text: "Home", subroot: "" },
-            { text: "Musings", subroot: "musings" },
+            { text: "Home", path: "" },
+            { text: "Musings", path: "musings" },
           ]}
         />
-        <Navbar priv links={[{ text: "Expenses", subroot: "expenses" }]} />
+        <Navbar
+          priv
+          links={[
+            { text: "Expenses", path: "expenses" },
+            { text: "Sign out", path: "api/auth/signout" },
+          ]}
+        />
         <main className="flex w-full flex-col place-items-center">
           {children}
         </main>

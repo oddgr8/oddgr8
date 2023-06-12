@@ -27,10 +27,10 @@ This is a [Next.js](https://nextjs.org/) project. You might want to understand t
 - [T3env](https://env.t3.gg/) and [zod](https://zod.dev/) for handling environment variables. Zod can also be used for state management
 - [Husky](https://typicode.github.io/husky/) for git hooks
 - [Jest](https://jestjs.io/) for testing APIs
+- [Vercel](https://planetscale.com/) for hosting
 
 Some libraries/frameworks to consider as more functionality is needed:
 
-- [Vercel](https://planetscale.com/) for hosting
 - [Planetscale](https://planetscale.com/) for database hosting. Will probably use mySQL or Postgres
 - [Drizzle ORM](https://orm.drizzle.team/) or [Prisma](https://www.prisma.io/) for ORM and database migrations
 
@@ -53,7 +53,7 @@ Maintain high-level tasks here. Remember to update the status and add notes if r
   - 💭 Add database connection
   - 💭 Add expenses page
   - 💭 Add brag page
-- 💭 Deploy
+- ✅ Deploy
 
 Legend:
 
