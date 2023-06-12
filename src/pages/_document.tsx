@@ -11,7 +11,7 @@ export default function Document() {
         <title>Onkar Deshpande</title>
         <meta name="description" content="Homepage for Onkar Deshpande" />
       </Head>
-      <body className="bg-shade-light transition-colors duration-500 dark:bg-shade-dark">
+      <body className="bg-shade-light text-center text-shade-dark transition-all duration-500 dark:bg-shade-dark dark:text-shade-light md:text-start">
         <Main />
         <NextScript />
       </body>
