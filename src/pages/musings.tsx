@@ -1,8 +1,10 @@
-import { type NextPage } from "next";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import Link from "next/link";
-import { titleFont } from "~/shared/fonts";
 import { faArrowUpRightFromSquare } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { type NextPage } from "next";
+import Head from "next/head";
+import Link from "next/link";
+
+import { titleFont } from "~/shared/fonts";
 
 function Musing() {
   return (
@@ -58,17 +60,23 @@ function Musing() {
 
 const Musings: NextPage = () => {
   return (
-    <div className="flex w-full max-w-2xl flex-col place-items-center p-10 text-start">
-      <p className={"text-3xl lg:text-4xl" + titleFont}>Behold...</p>
-      <h1 className={"text-7xl text-main lg:text-8xl" + titleFont}>
-        My Stuff!
-      </h1>
-      <p className={"my-5"}>
-        I plan to add my blog here. Until that I do that, here are some things I
-        found interesting:
-      </p>
-      <Musing />
-    </div>
+    <>
+      <Head>
+        <title>Musings | Onkar Deshpande</title>
+        <meta name="description" content="Musings of Onkar Deshpande" />
+      </Head>
+      <div className="flex w-full max-w-2xl flex-col place-items-center p-10 text-start">
+        <p className={"text-3xl lg:text-4xl" + titleFont}>Behold...</p>
+        <h1 className={"text-7xl text-main lg:text-8xl" + titleFont}>
+          My Stuff!
+        </h1>
+        <p className={"my-5"}>
+          I plan to add my blog here. Until that I do that, here are some things
+          I found interesting:
+        </p>
+        <Musing />
+      </div>
+    </>
   );
 };
 

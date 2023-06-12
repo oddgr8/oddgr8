@@ -1,15 +1,18 @@
-import { type NextPage } from "next";
-import Image from "next/image";
-import me from "../../public/me.png";
-import { titleFont } from "~/shared/fonts";
-import Link from "next/link";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faGithub,
   faLinkedinIn,
   faTwitter,
 } from "@fortawesome/free-brands-svg-icons";
 import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { type NextPage } from "next";
+import Head from "next/head";
+import Image from "next/image";
+import Link from "next/link";
+
+import { titleFont } from "~/shared/fonts";
+
+import me from "../../public/me.png";
 
 function Intro() {
   return (
@@ -88,13 +91,19 @@ function HeroImage() {
 
 const Home: NextPage = () => {
   return (
-    <div className="flex w-full flex-col place-items-center justify-around p-10 md:flex-row">
-      <Intro />
-      <div className="flex flex-col place-items-center">
-        <HeroImage />
-        <Contacts />
+    <>
+      <Head>
+        <title>Onkar Deshpande</title>
+        <meta name="description" content="Home page for Onkar Deshpande" />
+      </Head>
+      <div className="flex w-full flex-col place-items-center justify-around p-10 md:flex-row">
+        <Intro />
+        <div className="flex flex-col place-items-center">
+          <HeroImage />
+          <Contacts />
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 

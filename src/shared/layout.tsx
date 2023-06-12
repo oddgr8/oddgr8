@@ -1,10 +1,11 @@
 import "@theme-toggles/react/css/Expand.css";
-import Link from "next/link";
-import { useSession } from "next-auth/react";
-import { type PropsWithChildren } from "react";
-import { useRouter } from "next/router";
 import { Expand } from "@theme-toggles/react";
+import Link from "next/link";
+import { useRouter } from "next/router";
+import { useSession } from "next-auth/react";
 import { useTheme } from "next-themes";
+import { type PropsWithChildren } from "react";
+
 import { commonFont, titleFont } from "./fonts";
 import { isAuthorized } from "./users";
 

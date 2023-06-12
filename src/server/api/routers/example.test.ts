@@ -1,7 +1,8 @@
-import { type inferProcedureInput } from "@trpc/server";
-import { createInnerTRPCContext } from "../trpc";
-import { appRouter, type AppRouter } from "../root";
 import { it, expect } from "@jest/globals";
+import { type inferProcedureInput } from "@trpc/server";
+
+import { appRouter, type AppRouter } from "../root";
+import { createInnerTRPCContext } from "../trpc";
 
 it("Should echo sent data in testing environment", async () => {
   const caller = appRouter.createCaller(
