@@ -1,7 +1,5 @@
-Hi,
+Hi, thanks for visiting!
 
-I'm a computer science graduate from IIT Bombay and I'm currently into distributed systems and blockchain.
+Check out my [website](https://onkardeshpande.com), inspired by [this website](https://leerob.io/) and maintained in [this repo](https://github.com/oddgr8/oddgr8).
 
-I'm also interested in Math, Physics and Philosophy. I'm almost always up for a conversation regardless of the topic.
-
-Hit me up [here](https://onkardeshpande.com).
+Also see my [dev env](https://github.com/oddgr8/config).

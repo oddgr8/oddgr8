@@ -22,12 +22,12 @@ Yeah... Not really sure about this.
 This is a [Next.js](https://nextjs.org/) project. You might want to understand these libraries before contributing
 
 - [TailwindCSS](https://tailwindcss.com/) for inline css utility classes. Might add other utility libraries like [clsx](https://github.com/lukeed/clsx).
-- [NextAuth.js](https://next-auth.js.org/) for authentication
-- [tRPC](https://trpc.io/) for connecting to backend
+- [NextAuth.js](https://next-auth.js.org/) for authentication. We use Google provider. For now Signing in is only useful for the author himself.
+- [tRPC](https://trpc.io/) for connecting to backend. Used as is from C3TA. For now only auth is used
 - [T3env](https://env.t3.gg/) and [zod](https://zod.dev/) for handling environment variables. Zod can also be used for state management
-- [Husky](https://typicode.github.io/husky/) for git hooks
-- [Jest](https://jestjs.io/) for testing APIs
-- [Vercel](https://vercel.com/) for hosting
+- [Husky](https://typicode.github.io/husky/) for git hooks. Lint-staged runs on commit and tests run on push to main
+- [Jest](https://jestjs.io/) for testing APIs. Tests are enforced when you push to main
+- [Vercel](https://vercel.com/) for hosting. We use 2 branches: main and staging. Expectation is to make changes to staging first, wait for it to deploy, make sure everything works fine and then rebase main onto staging
 
 Some libraries/frameworks to consider as more functionality is needed:
 
@@ -46,6 +46,11 @@ Given my priorities for other things, we are pausing this project for now.
 We are not using the app router right now because CT3A is not yet configured for it. I believe we can wait till they add App router and drizzle ORM to their scaffolding.
 Then use that to add them to my website as well. App router has some advantages but mainly it is nested layouts and nested private paths that make it worth switching.
 
+Things to not do
+
+- There's a separate config repo that's linked in the README so don't add configs here
+- Don't separate out the content from the structure since this is not a template repo for others. The LICENSE reflects that.
+
 ### TODOs
 
 - ✅ Add Husky hooks
@@ -63,7 +68,6 @@ Then use that to add them to my website as well. App router has some advantages 
   - 💭 Add brag page
 - ✅ Deploy
 - 💭 Add link to the config/dev env repo
-- 💭 Separate structure and content
 - 💭 Add LICENSE
 
 Legend:
