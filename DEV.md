@@ -27,7 +27,7 @@ This is a [Next.js](https://nextjs.org/) project. You might want to understand t
 - [T3env](https://env.t3.gg/) and [zod](https://zod.dev/) for handling environment variables. Zod can also be used for state management
 - [Husky](https://typicode.github.io/husky/) for git hooks
 - [Jest](https://jestjs.io/) for testing APIs
-- [Vercel](https://planetscale.com/) for hosting
+- [Vercel](https://vercel.com/) for hosting
 
 Some libraries/frameworks to consider as more functionality is needed:
 
@@ -62,6 +62,9 @@ Then use that to add them to my website as well. App router has some advantages 
   - 💭 Add expenses page
   - 💭 Add brag page
 - ✅ Deploy
+- 💭 Add link to the config/dev env repo
+- 💭 Separate structure and content
+- 💭 Add LICENSE
 
 Legend:
 
