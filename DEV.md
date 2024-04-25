@@ -21,6 +21,7 @@ Yeah... Not really sure about this.
 
 This is a [Next.js](https://nextjs.org/) project. You might want to understand these libraries before contributing
 
+- [Pnpm](https://pnpm.io) for package management.
 - [TailwindCSS](https://tailwindcss.com/) for inline css utility classes. Might add other utility libraries like [clsx](https://github.com/lukeed/clsx).
 - [NextAuth.js](https://next-auth.js.org/) for authentication. We use Google provider. For now Signing in is only useful for the author himself.
 - [tRPC](https://trpc.io/) for connecting to backend. Used as is from C3TA. For now only auth is used
@@ -62,13 +63,14 @@ Things to not do
 - ✅ Add Home page
   - 💭 Add Projects list
 - ✅ Add Blog page
+  - 💭 Add blogs
 - 💭 Add private pages
   - 💭 Add database connection
   - 💭 Add expenses page
   - 💭 Add brag page
 - ✅ Deploy
 - 💭 Add link to the config/dev env repo
-- 💭 Add LICENSE
+- ✅ Add LICENSE
 
 Legend:
 

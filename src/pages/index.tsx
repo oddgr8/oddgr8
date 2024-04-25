@@ -10,9 +10,8 @@ import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
 
+import me from "public/me.png";
 import { titleFont } from "~/shared/fonts";
-
-import me from "../../public/me.png";
 
 function Intro() {
   return (
@@ -22,7 +21,7 @@ function Intro() {
         Onkar Deshpande
       </h1>
       <p className="mt-10 text-xl">
-        I&apos;m an incoming MS in CS student at Stanford University.
+        I&apos;m pursuing MS in CS student at Stanford University.
       </p>
       <p className="mt-5 text-xl">
         I have a bachelor&apos;s degree in CS from IIT Bombay, research
@@ -32,8 +31,8 @@ function Intro() {
       </p>
       <p className="mt-5 text-xl">
         I&apos;m into distributed systems and blockchain. I like reading Math,
-        Physics and a bit of Philosophy too. Right now I&apos;m trying to learn
-        Rust. I play Age of Empires 2 in my free time.
+        Physics and a bit of Economics too. Right now I&apos;m trying to start a
+        blog. I play Age of Empires 2 in my free time.
       </p>
     </div>
   );

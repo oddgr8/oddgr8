@@ -1,0 +1,56 @@
+==================================================================
+https://keybase.io/oddgr8
+--------------------------------------------------------------------
+
+I hereby claim:
+
+  * I am an admin of https://onkardeshpande.com
+  * I am oddgr8 (https://keybase.io/oddgr8) on keybase.
+  * I have a public key ASCaL_ergYGjNo-z_KSSBMQgqK7L_Q7vnpsWXu0sHVLzIAo
+
+To do so, I am signing this object:
+
+{
+  "body": {
+    "key": {
+      "eldest_kid": "01209a2ff7ab8181a3368fb3fca49204c420a8aecbfd0eef9e9b165eed2c1d52f3200a",
+      "host": "keybase.io",
+      "kid": "01209a2ff7ab8181a3368fb3fca49204c420a8aecbfd0eef9e9b165eed2c1d52f3200a",
+      "uid": "4b823a298bf952a83e7f5be17e3efa19",
+      "username": "oddgr8"
+    },
+    "merkle_root": {
+      "ctime": 1714070226,
+      "hash": "d241ddb7bf43c2756af532d1b60bb97cd0453cf9dedc4ee2505b598f1559a0fa993ad9fa3fd1afc45d5ee0bbbfdb066a88a8d8481706b6797cbcca786acedaf4",
+      "hash_meta": "5b2c5d0cd2397c685b8dce20e21c10493ab33d6da91b5520a46bd353a83a0deb",
+      "seqno": 25675568
+    },
+    "service": {
+      "entropy": "ZsRzgHHVbGf1YubpMd135m3H",
+      "hostname": "onkardeshpande.com",
+      "protocol": "https:"
+    },
+    "type": "web_service_binding",
+    "version": 2
+  },
+  "client": {
+    "name": "keybase.io go client",
+    "version": "6.2.8"
+  },
+  "ctime": 1714070241,
+  "expire_in": 504576000,
+  "prev": "2ac4b14512ca2bf4244a03cbd878d4e1d25a2535232a54dbec031a46e911a9ed",
+  "seqno": 6,
+  "tag": "signature"
+}
+
+which yields the signature:
+
+hKRib2R5hqhkZXRhY2hlZMOpaGFzaF90eXBlCqNrZXnEIwEgmi/3q4GBozaPs/ykkgTEIKiuy/0O756bFl7tLB1S8yAKp3BheWxvYWTESpcCBsQgKsSxRRLKK/QkSgPL2HjU4dJaJTUjKlTb7AMaRukRqe3EIMUzOvxI8NvbrTidvNYL9I5pKwok0AnTHIzWGjN4DdLvAgHCo3NpZ8RAVNaFdeqHGu4DhXYFxo7ZIeW5yxsU9zrz0RA9gR1Dj4Oj1jdDw/hkGokzqeWutUuxytvq3UGoCtGi09NUQWUIA6hzaWdfdHlwZSCkaGFzaIKkdHlwZQildmFsdWXEILkVsomNvQgzZtekukTZ/h+T6dYZri1V0ry0KRtkz3jIo3RhZ80CAqd2ZXJzaW9uAQ==
+
+And finally, I am proving ownership of this host by posting or
+appending to this document.
+
+View my publicly-auditable identity here: https://keybase.io/oddgr8
+
+==================================================================
