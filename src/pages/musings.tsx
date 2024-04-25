@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { type NextPage } from "next";
 import Head from "next/head";
 import Link from "next/link";
+import React from "react";
 
 import { titleFont } from "~/shared/fonts";
 

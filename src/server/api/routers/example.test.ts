@@ -1,4 +1,4 @@
-import { it, expect } from "@jest/globals";
+import { expect, it } from "@jest/globals";
 import { type inferProcedureInput } from "@trpc/server";
 
 import { appRouter, type AppRouter } from "../root";

@@ -9,6 +9,7 @@ import { type NextPage } from "next";
 import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
+import React from "react";
 
 import me from "public/me.png";
 import { titleFont } from "~/shared/fonts";

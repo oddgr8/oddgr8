@@ -1,10 +1,11 @@
-import "@theme-toggles/react/css/Expand.css";
 import { Expand } from "@theme-toggles/react";
+import "@theme-toggles/react/css/Expand.css";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useSession } from "next-auth/react";
 import { useTheme } from "next-themes";
 import { type PropsWithChildren } from "react";
+import React from "react";
 
 import { commonFont, titleFont } from "./fonts";
 import { isAuthorized } from "./users";
@@ -33,7 +34,7 @@ function Navbar({
   const { asPath } = useRouter();
   const { status, data } = useSession();
   if (priv)
-    if (status !== "authenticated" || !isAuthorized(data.user.email ?? ""))
+    if (status !== "authenticated" || !isAuthorized(data.user?.email ?? ""))
       return null;
   const page = asPath.split("/")[1];
   return (

@@ -3,8 +3,8 @@ import { z } from "zod";
 import { env } from "~/env.mjs";
 import {
   createTRPCRouter,
-  publicProcedure,
   protectedProcedure,
+  publicProcedure,
 } from "~/server/api/trpc";
 
 export const exampleRouter = createTRPCRouter({
