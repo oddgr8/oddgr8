@@ -12,6 +12,11 @@ function Musing() {
     <>
       {[
         {
+          link: "https://youtu.be/HeQX2HjkcNo",
+          content: "Math's Fundamental Flaw",
+          author: "Vertasium",
+        },
+        {
           link: "https://www.rust-lang.org/learn",
           content: "Rust",
           author: "",
