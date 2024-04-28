@@ -12,11 +12,6 @@ function Musing() {
     <>
       {[
         {
-          link: "https://youtu.be/gnUYoQ1pwes",
-          content: "Why the left and right hate each other",
-          author: "WhatIfAltHist",
-        },
-        {
           link: "https://www.rust-lang.org/learn",
           content: "Rust",
           author: "",
