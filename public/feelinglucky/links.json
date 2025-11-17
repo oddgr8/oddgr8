@@ -93,43 +93,182 @@
     {
       "url": "https://leetcode.com/problemset/?difficulty=HARD"
     },
-    { "url": "https://jeeadv.ac.in/past_qps/2007_1.pdf" },
-    { "url": "https://jeeadv.ac.in/past_qps/2007_2.pdf" },
-    { "url": "https://jeeadv.ac.in/past_qps/2008_1.pdf" },
-    { "url": "https://jeeadv.ac.in/past_qps/2008_2.pdf" },
-    { "url": "https://jeeadv.ac.in/past_qps/2009_1.pdf" },
-    { "url": "https://jeeadv.ac.in/past_qps/2009_2.pdf" },
-    { "url": "https://jeeadv.ac.in/past_qps/2010_1.pdf" },
-    { "url": "https://jeeadv.ac.in/past_qps/2010_2.pdf" },
-    { "url": "https://jeeadv.ac.in/past_qps/2011_1.pdf" },
-    { "url": "https://jeeadv.ac.in/past_qps/2011_2.pdf" },
-    { "url": "https://jeeadv.ac.in/past_qps/2012_1.pdf" },
-    { "url": "https://jeeadv.ac.in/past_qps/2012_2.pdf" },
-    { "url": "https://jeeadv.ac.in/past_qps/2013_1.pdf" },
-    { "url": "https://jeeadv.ac.in/past_qps/2013_2.pdf" },
-    { "url": "https://jeeadv.ac.in/past_qps/2014_1.pdf" },
-    { "url": "https://jeeadv.ac.in/past_qps/2014_2.pdf" },
-    { "url": "https://jeeadv.ac.in/past_qps/2015_1.pdf" },
-    { "url": "https://jeeadv.ac.in/past_qps/2015_2.pdf" },
-    { "url": "https://jeeadv.ac.in/past_qps/2016_1.pdf" },
-    { "url": "https://jeeadv.ac.in/past_qps/2016_2.pdf" },
-    { "url": "https://jeeadv.ac.in/past_qps/2017_1.pdf" },
-    { "url": "https://jeeadv.ac.in/past_qps/2017_2.pdf" },
-    { "url": "https://jeeadv.ac.in/past_qps/2018_1.pdf" },
-    { "url": "https://jeeadv.ac.in/past_qps/2018_2.pdf" },
-    { "url": "https://jeeadv.ac.in/past_qps/2019_1_English.pdf" },
-    { "url": "https://jeeadv.ac.in/past_qps/2019_2_English.pdf" },
-    { "url": "https://jeeadv.ac.in/past_qps/2020_1_English.pdf" },
-    { "url": "https://jeeadv.ac.in/past_qps/2020_2_English.pdf" },
-    { "url": "https://jeeadv.ac.in/past_qps/2021_1_English.pdf" },
-    { "url": "https://jeeadv.ac.in/past_qps/2021_2_English.pdf" },
-    { "url": "https://jeeadv.ac.in/past_qps/2022_1_English.pdf" },
-    { "url": "https://jeeadv.ac.in/past_qps/2022_2_English.pdf" },
-    { "url": "https://jeeadv.ac.in/past_qps/2023_1_English.pdf" },
-    { "url": "https://jeeadv.ac.in/past_qps/2023_2_English.pdf" },
-    { "url": "https://jeeadv.ac.in/past_qps/2024_1_English.pdf" },
-    { "url": "https://jeeadv.ac.in/past_qps/2024_2_English.pdf" },
-    { "url": "https://jeeadv.ac.in/past_qps/2025_1_English.pdf" },
-    { "url": "https://jeeadv.ac.in/past_qps/2025_2_English.pdf" }
+    {
+      "url": "https://jeeadv.ac.in/past_qps/2007_1.pdf"
+    },
+    {
+      "url": "https://jeeadv.ac.in/past_qps/2007_2.pdf"
+    },
+    {
+      "url": "https://jeeadv.ac.in/past_qps/2008_1.pdf"
+    },
+    {
+      "url": "https://jeeadv.ac.in/past_qps/2008_2.pdf"
+    },
+    {
+      "url": "https://jeeadv.ac.in/past_qps/2009_1.pdf"
+    },
+    {
+      "url": "https://jeeadv.ac.in/past_qps/2009_2.pdf"
+    },
+    {
+      "url": "https://jeeadv.ac.in/past_qps/2010_1.pdf"
+    },
+    {
+      "url": "https://jeeadv.ac.in/past_qps/2010_2.pdf"
+    },
+    {
+      "url": "https://jeeadv.ac.in/past_qps/2011_1.pdf"
+    },
+    {
+      "url": "https://jeeadv.ac.in/past_qps/2011_2.pdf"
+    },
+    {
+      "url": "https://jeeadv.ac.in/past_qps/2012_1.pdf"
+    },
+    {
+      "url": "https://jeeadv.ac.in/past_qps/2012_2.pdf"
+    },
+    {
+      "url": "https://jeeadv.ac.in/past_qps/2013_1.pdf"
+    },
+    {
+      "url": "https://jeeadv.ac.in/past_qps/2013_2.pdf"
+    },
+    {
+      "url": "https://jeeadv.ac.in/past_qps/2014_1.pdf"
+    },
+    {
+      "url": "https://jeeadv.ac.in/past_qps/2014_2.pdf"
+    },
+    {
+      "url": "https://jeeadv.ac.in/past_qps/2015_1.pdf"
+    },
+    {
+      "url": "https://jeeadv.ac.in/past_qps/2015_2.pdf"
+    },
+    {
+      "url": "https://jeeadv.ac.in/past_qps/2016_1.pdf"
+    },
+    {
+      "url": "https://jeeadv.ac.in/past_qps/2016_2.pdf"
+    },
+    {
+      "url": "https://jeeadv.ac.in/past_qps/2017_1.pdf"
+    },
+    {
+      "url": "https://jeeadv.ac.in/past_qps/2017_2.pdf"
+    },
+    {
+      "url": "https://jeeadv.ac.in/past_qps/2018_1.pdf"
+    },
+    {
+      "url": "https://jeeadv.ac.in/past_qps/2018_2.pdf"
+    },
+    {
+      "url": "https://jeeadv.ac.in/past_qps/2019_1_English.pdf"
+    },
+    {
+      "url": "https://jeeadv.ac.in/past_qps/2019_2_English.pdf"
+    },
+    {
+      "url": "https://jeeadv.ac.in/past_qps/2020_1_English.pdf"
+    },
+    {
+      "url": "https://jeeadv.ac.in/past_qps/2020_2_English.pdf"
+    },
+    {
+      "url": "https://jeeadv.ac.in/past_qps/2021_1_English.pdf"
+    },
+    {
+      "url": "https://jeeadv.ac.in/past_qps/2021_2_English.pdf"
+    },
+    {
+      "url": "https://jeeadv.ac.in/past_qps/2022_1_English.pdf"
+    },
+    {
+      "url": "https://jeeadv.ac.in/past_qps/2022_2_English.pdf"
+    },
+    {
+      "url": "https://jeeadv.ac.in/past_qps/2023_1_English.pdf"
+    },
+    {
+      "url": "https://jeeadv.ac.in/past_qps/2023_2_English.pdf"
+    },
+    {
+      "url": "https://jeeadv.ac.in/past_qps/2024_1_English.pdf"
+    },
+    {
+      "url": "https://jeeadv.ac.in/past_qps/2024_2_English.pdf"
+    },
+    {
+      "url": "https://jeeadv.ac.in/past_qps/2025_1_English.pdf"
+    },
+    {
+      "url": "https://jeeadv.ac.in/past_qps/2025_2_English.pdf"
+    },
+    {
+      "url": "https://cdn1.mathongo.com/wp-content/uploads/20190803153504/kvpy_question_paper_2010_stream_sb_sx.pdf"
+    },
+    {
+      "url": "https://cdn1.mathongo.com/wp-content/uploads/20190803153500/kvpy_question_paper_2010_stream_sa_part_b.pdf"
+    },
+    {
+      "url": "https://cdn1.mathongo.com/wp-content/uploads/20190803153458/kvpy_question_paper_2010_stream_sa_part_a.pdf"
+    },
+    {
+      "url": "https://cdn1.mathongo.com/wp-content/uploads/20190803153539/kvpy_question_paper_2011_stream_sb_sx.pdf"
+    },
+    {
+      "url": "https://cdn1.mathongo.com/wp-content/uploads/20190803153533/kvpy_question_paper_2011_stream_sa.pdf"
+    },
+    {
+      "url": "https://cdn1.mathongo.com/wp-content/uploads/20190803153555/kvpy_question_paper_2012_stream_sb_sx.pdf"
+    },
+    {
+      "url": "https://cdn1.mathongo.com/wp-content/uploads/20190803153553/kvpy_question_paper_2012_stream_sa.pdf"
+    },
+    {
+      "url": "https://cdn1.mathongo.com/wp-content/uploads/20190803153613/kvpy_question_paper_2013_stream_sb_sx.pdf"
+    },
+    {
+      "url": "https://cdn1.mathongo.com/wp-content/uploads/20190803153609/kvpy_question_paper_2013_stream_sa.pdf"
+    },
+    {
+      "url": "https://cdn1.mathongo.com/wp-content/uploads/20190803153635/kvpy_question_paper_2014_stream_sb_sx.pdf"
+    },
+    {
+      "url": "https://cdn1.mathongo.com/wp-content/uploads/20190803153630/kvpy_question_paper_2014_stream_sa.pdf"
+    },
+    {
+      "url": "https://cdn1.mathongo.com/wp-content/uploads/20190803153655/kvpy_question_paper_2015_stream_sb_sx.pdf"
+    },
+    {
+      "url": "https://cdn1.mathongo.com/wp-content/uploads/20190803153651/kvpy_question_paper_2015_stream_sa.pdf"
+    },
+    {
+      "url": "https://cdn1.mathongo.com/wp-content/uploads/20190803153712/kvpy_question_paper_2016_stream_sb_sx.pdf"
+    },
+    {
+      "url": "https://cdn1.mathongo.com/wp-content/uploads/20190803153709/kvpy_question_paper_2016_stream_sa.pdf"
+    },
+    {
+      "url": "https://cdn1.mathongo.com/wp-content/uploads/20190803153739/kvpy_question_paper_2017_stream_sb_sx_19_nov.pdf"
+    },
+    {
+      "url": "https://cdn1.mathongo.com/wp-content/uploads/20190803153735/kvpy_question_paper_2017_stream_sb_sx_05_nov.pdf"
+    },
+    {
+      "url": "https://cdn1.mathongo.com/wp-content/uploads/20190803153732/kvpy_question_paper_2017_stream_sa_19_nov.pdf"
+    },
+    {
+      "url": "https://cdn1.mathongo.com/wp-content/uploads/20190803153729/kvpy_question_paper_2017_stream_sa_05_nov.pdf"
+    },
+    {
+      "url": "https://cdn1.mathongo.com/wp-content/uploads/20190803153814/kvpy_question_paper_2018_stream_sb_sx.pdf"
+    },
+    {
+      "url": "https://cdn1.mathongo.com/wp-content/uploads/20190803153759/kvpy_question_paper_2018_stream_sa.pdf"
+    }
   ]
 }
