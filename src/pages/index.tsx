@@ -22,13 +22,14 @@ function Intro() {
         Onkar Deshpande
       </h1>
       <p className="mt-10 text-xl">
-        I&apos;m pursuing MS in CS student at Stanford University.
+        I&apos;m a software Engineer at Nexthop AI.
       </p>
       <p className="mt-5 text-xl">
-        I have a bachelor&apos;s degree in CS from IIT Bombay, research
-        experience in theoretical CS from my internship at TU Braunschweig and
-        two years of industry experience from working in the cloudnative
-        workload protection team at Rubrik India.
+        I have a master&apos;s degree in CS from Stanford University and a
+        bachelor&apos;s degree in CS from IIT Bombay, research experience in
+        theoretical CS from my internship at TU Braunschweig and two years of
+        industry experience from working in the cloudnative workload protection
+        team at Rubrik India.
       </p>
       <p className="mt-5 text-xl">
         I&apos;m into distributed systems and blockchain. I like reading Math,
