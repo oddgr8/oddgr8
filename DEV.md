@@ -10,7 +10,7 @@ A small space I'm building for myself online, with both completed items and ongo
 - [x] Blog page
   - [ ] Blog posts
 - [x] My public keys
-- [ ] “Feeling lucky” link
+- [x] “Feeling lucky” link
 - [ ] Projects section
   - [ ] Projects list
   - [ ] Small hosted projects
