@@ -15,6 +15,56 @@ interface LinksData {
 const FeelingLucky: NextPage = () => {
   const [isRedirecting, setIsRedirecting] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [info, setInfo] = useState<string | null>(null);
+
+  // Helper function to detect browser type
+  const getBrowserType = (): string => {
+    const userAgent = navigator.userAgent.toLowerCase();
+    if (userAgent.includes("safari") && !userAgent.includes("chrome")) {
+      return "safari";
+    } else if (userAgent.includes("chrome")) {
+      return "chrome";
+    } else if (userAgent.includes("firefox")) {
+      return "firefox";
+    } else if (userAgent.includes("edge")) {
+      return "edge";
+    }
+    return "other";
+  };
+
+  // Helper function to add PDF page navigation based on browser
+  const addPdfPageNavigation = (url: string, page: number): string => {
+    const browser = getBrowserType();
+
+    switch (browser) {
+      case "safari":
+        // Safari has very limited PDF fragment support
+        // Try multiple approaches in order of likelihood to work:
+        // 1. Standard page parameter (sometimes works)
+        // 2. Adobe Reader nameddest format
+        // 3. Pagemode with page parameter
+
+        // For Safari, we'll try multiple formats and let the browser handle it
+        // Most reliable approach is to try the standard format first
+        const standardUrl = `${url}#page=${page}`;
+
+        // If the standard doesn't work, Safari users will at least get the PDF
+        // We could also try: `${url}#pagemode=bookmarks&page=${page}`
+        // Or: `${url}#nameddest=page.${page}`
+        // But the standard format is most likely to work when it does work
+        return standardUrl;
+
+      case "chrome":
+      case "firefox":
+      case "edge":
+        // These browsers generally support the standard page parameter reliably
+        return `${url}#page=${page}`;
+
+      default:
+        // For unknown browsers, try the standard approach
+        return `${url}#page=${page}`;
+    }
+  };
 
   const getRandomLink = async (): Promise<string> => {
     try {
@@ -44,7 +94,7 @@ const FeelingLucky: NextPage = () => {
         // Generate a random page number between 1 and 100
         // Most PDFs should have at least a few pages, and browsers will handle invalid page numbers gracefully
         const randomPage = Math.floor(Math.random() * 100) + 1;
-        url += `#page=${randomPage}`;
+        url = addPdfPageNavigation(url, randomPage);
       }
 
       return url;
@@ -62,8 +112,28 @@ const FeelingLucky: NextPage = () => {
 
       try {
         const randomUrl = await getRandomLink();
-        // Open in new tab/window
-        window.open(randomUrl, "_blank", "noopener,noreferrer");
+        const browser = getBrowserType();
+
+        // Special handling for Safari with PDFs
+        if (browser === "safari" && randomUrl.toLowerCase().endsWith(".pdf")) {
+          // For Safari, we'll open the PDF and show a helpful message
+          window.open(randomUrl, "_blank", "noopener,noreferrer");
+
+          // Show a brief informational message for Safari users
+          setTimeout(() => {
+            setInfo(
+              "Note: PDF page navigation may not work in Safari. The PDF will open at the beginning."
+            );
+          }, 1000);
+
+          // Clear the message after a few seconds
+          setTimeout(() => {
+            setInfo(null);
+          }, 5000);
+        } else {
+          // For other browsers or non-PDF links, proceed normally
+          window.open(randomUrl, "_blank", "noopener,noreferrer");
+        }
       } catch (err) {
         setError(
           err instanceof Error ? err.message : "Failed to get random link"
@@ -101,12 +171,23 @@ const FeelingLucky: NextPage = () => {
           </div>
         )}
 
+        {info && (
+          <div className="mb-6 rounded-lg bg-blue-100 p-4 dark:bg-blue-900">
+            <p className="text-blue-700 dark:text-blue-300">{info}</p>
+          </div>
+        )}
+
         <div className="space-y-4">
           <p className="text-lg">
             Click the button below to be taken to a random interesting link!
           </p>
           <p className="text-sm text-gray-600 dark:text-gray-400">
             If it&apos;s a PDF, you&apos;ll be taken to a random page within it.
+            <br />
+            <span className="text-xs">
+              (Page navigation works reliably in Chrome, Firefox, and Edge.
+              Safari may open PDFs at the beginning.)
+            </span>
           </p>
 
           <button
