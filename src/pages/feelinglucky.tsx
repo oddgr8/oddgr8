@@ -1,6 +1,6 @@
 import { type NextPage } from "next";
 import Head from "next/head";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import { titleFont } from "~/shared/fonts";
 
@@ -16,6 +16,15 @@ const FeelingLucky: NextPage = () => {
   const [isRedirecting, setIsRedirecting] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [info, setInfo] = useState<string | null>(null);
+  const [isSafari, setIsSafari] = useState(false);
+  const [isClient, setIsClient] = useState(false);
+
+  // Effect to detect browser type on client side
+  useEffect(() => {
+    setIsClient(true);
+    const userAgent = navigator.userAgent.toLowerCase();
+    setIsSafari(userAgent.includes("safari") && !userAgent.includes("chrome"));
+  }, []);
 
   // Helper function to detect browser type
   const getBrowserType = (): string => {
@@ -184,10 +193,12 @@ const FeelingLucky: NextPage = () => {
           <p className="text-sm text-gray-600 dark:text-gray-400">
             If it&apos;s a PDF, you&apos;ll be taken to a random page within it.
             <br />
-            <span className="text-xs">
-              (Page navigation works reliably in Chrome, Firefox, and Edge.
-              Safari may open PDFs at the beginning.)
-            </span>
+            {isClient && isSafari && (
+              <span className="text-xs">
+                (Page navigation works reliably in Chrome, Firefox, and Edge.
+                Safari may open PDFs at the beginning.)
+              </span>
+            )}
           </p>
 
           <button
