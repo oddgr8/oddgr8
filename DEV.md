@@ -1,80 +1,66 @@
-# What?
+# My Personal Corner of the Internet
 
-The aim of this project is to have a personal corner of the internet. I intend to add
+## What
 
-- a landing page about me
-- a blog page
-- Some private pages:
-  - a bucket list
-  - Life goals/TODOs
-  - Expense tracking
-  - Brag document
-- a place to host any small projects I make
+A small space I'm building for myself online, with both completed items and ongoing goals in one place.
 
-It will be hosted on my [domain](https://onkardeshpande.com).
+### Public
 
-# Why?
+- [x] Landing page
+- [x] Blog page
+  - [ ] Blog posts
+- [x] My public keys
+- [ ] “Feeling lucky” link
+- [ ] Projects section
+  - [ ] Projects list
+  - [ ] Small hosted projects
 
-Yeah... Not really sure about this.
+### Private
 
-# How?
+Migrate private pages from Notion/Sheets
 
-This is a [Next.js](https://nextjs.org/) project. You might want to understand these libraries before contributing
+- [x] Private API
+- [ ] Bucket list
+- [ ] Life goals / TODOs
+- [ ] Expense tracking
+- [ ] Brag document
 
-- [Pnpm](https://pnpm.io) for package management.
-- [TailwindCSS](https://tailwindcss.com/) for inline css utility classes. Might add other utility libraries like [clsx](https://github.com/lukeed/clsx).
-- [NextAuth.js](https://next-auth.js.org/) for authentication. We use Google provider. For now Signing in is only useful for the author himself.
-- [tRPC](https://trpc.io/) for connecting to backend. Used as is from C3TA. For now only auth is used
-- [T3env](https://env.t3.gg/) and [zod](https://zod.dev/) for handling environment variables. Zod can also be used for state management
-- [Husky](https://typicode.github.io/husky/) for git hooks. Lint-staged runs on commit and tests run on push to main
-- [Jest](https://jestjs.io/) for testing APIs. Tests are enforced when you push to main
-- [Vercel](https://vercel.com/) for hosting. We use 2 branches: main and staging. Expectation is to make changes to staging first, wait for it to deploy, make sure everything works fine and then rebase main onto staging
+### Backend / Infra
 
-Some libraries/frameworks to consider as more functionality is needed:
+- [x] Authentication (NextAuth)
+- [x] tRPC backend
+- [x] API tests (Jest)
+- [x] Husky git hooks
+- [x] Deployment workflow (Vercel)
+- [ ] Database
+  - [ ] Connection
+  - [ ] Schema + private pages (expenses, brag, etc.)
 
-- [Planetscale](https://planetscale.com/) or [Vercel Postgres](https://vercel.com/docs/storage/vercel-postgres) for database hosting.
-- [Drizzle ORM](https://orm.drizzle.team/) or [Prisma](https://www.prisma.io/) for ORM and database migrations
+Hosted on my [domain](https://onkardeshpande.com).
 
-# Contributing
+## Why
 
-Maintain high-level tasks here. Remember to update the status and add notes if required. This is because there are often gaps when you don't contribute and this helps rebuild context.
+Still figuring that out.
 
-### Notes
+## How
 
-Right now we are waiting for Vercel postgres and drizzle ORM to go GA. Another library we can consider for now is Prisma and Planetscale for hosting.
-Given my priorities for other things, we are pausing this project for now.
+Built with **Next.js** via `create-t3-app`.
 
-We are not using the app router right now because CT3A is not yet configured for it. I believe we can wait till they add App router and drizzle ORM to their scaffolding.
-Then use that to add them to my website as well. App router has some advantages but mainly it is nested layouts and nested private paths that make it worth switching.
+Tools & services:
 
-Things to not do
+- [pnpm](https://pnpm.io/) – package manager
+- [tailwindcss](https://tailwindcss.com/) – styling (might add utilities like `clsx`)
+- [NextAuth.js](https://next-auth.js.org/) – auth
+- [tRPC](https://trpc.io/) – backend bridge
+- [T3env](https://env.t3.gg/) + [zod](https://zod.dev/) – env validation
+- [biome](https://biomejs.dev/) – linting & formatting
+- [Husky](https://typicode.github.io/husky/) – git hooks
+- [Jest](https://jestjs.io/) – API tests
+- [Vercel](https://vercel.com/) – hosting (main + staging workflow)
 
-- There's a separate config repo that's linked in the README so don't add configs here
-- Don't separate out the content from the structure since this is not a template repo for others. The LICENSE reflects that.
+Potential additions later:
 
-### TODOs
+- [Planetscale](https://planetscale.com/) or [Vercel Postgres](https://vercel.com/docs/storage/vercel-postgres)
+- [Drizzle](https://orm.drizzle.team/) or [Prisma](https://www.prisma.io/)
 
-- ✅ Add Husky hooks
-- ✅ Add API test
-- ✅ Add Authentication
-- ✅ Add Layout
-  - ✅ Add NavBar
-  - ✅ Add Private pages
-- ✅ Add Home page
-  - 💭 Add Projects list
-- ✅ Add Blog page
-  - 💭 Add blogs
-- 💭 Add private pages
-  - 💭 Add database connection
-  - 💭 Add expenses page
-  - 💭 Add brag page
-- ✅ Deploy
-- 💭 Add link to the config/dev env repo
-- ✅ Add LICENSE
-
-Legend:
-
-- 💭 To do
-- ⏳ In Progress
-- 🚫 Blocked
-- ✅ Done
+Push to **staging** for preview; push to **main** for production.
