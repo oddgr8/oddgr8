@@ -18,6 +18,8 @@ interface LinksData {
   links: Link[];
 }
 
+const STORAGE_KEY = "feelingLucky_selectedCategories";
+
 const FeelingLucky: NextPage = () => {
   const [isRedirecting, setIsRedirecting] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -32,6 +34,41 @@ const FeelingLucky: NextPage = () => {
   const [expandedCategories, setExpandedCategories] = useState<Set<string>>(
     new Set()
   );
+
+  // Helper functions for local storage
+  const saveSelectedCategories = (categories: Set<string>) => {
+    if (typeof window !== "undefined") {
+      try {
+        localStorage.setItem(
+          STORAGE_KEY,
+          JSON.stringify(Array.from(categories))
+        );
+      } catch (error) {
+        console.warn(
+          "Failed to save selected categories to localStorage:",
+          error
+        );
+      }
+    }
+  };
+
+  const loadSelectedCategories = (): Set<string> => {
+    if (typeof window !== "undefined") {
+      try {
+        const saved = localStorage.getItem(STORAGE_KEY);
+        if (saved) {
+          const categories = JSON.parse(saved) as string[];
+          return new Set(categories);
+        }
+      } catch (error) {
+        console.warn(
+          "Failed to load selected categories from localStorage:",
+          error
+        );
+      }
+    }
+    return new Set();
+  };
 
   // Effect to detect browser type on client side
   useEffect(() => {
@@ -56,9 +93,6 @@ const FeelingLucky: NextPage = () => {
           new Set(data.links.map((link) => link.category))
         );
         setAvailableCategories(categories.sort());
-
-        // Initially select all categories
-        setSelectedCategories(new Set(categories));
 
         // Initially expand all parent categories
         const getAllParentCategories = (
@@ -85,6 +119,27 @@ const FeelingLucky: NextPage = () => {
     void loadLinksData();
   }, []);
 
+  // Effect to load saved categories from localStorage
+  useEffect(() => {
+    if (availableCategories.length > 0) {
+      const savedCategories = loadSelectedCategories();
+      // Only keep categories that still exist in the current data
+      const validSavedCategories = new Set(
+        Array.from(savedCategories).filter((cat) =>
+          availableCategories.includes(cat)
+        )
+      );
+
+      if (validSavedCategories.size > 0) {
+        setSelectedCategories(validSavedCategories);
+      } else {
+        // If no valid saved categories, select all by default
+        setSelectedCategories(new Set(availableCategories));
+        saveSelectedCategories(new Set(availableCategories));
+      }
+    }
+  }, [availableCategories]);
+
   // Helper functions for category management
   const toggleCategory = (category: string) => {
     const newSelected = new Set(selectedCategories);
@@ -94,6 +149,7 @@ const FeelingLucky: NextPage = () => {
       newSelected.add(category);
     }
     setSelectedCategories(newSelected);
+    saveSelectedCategories(newSelected);
   };
 
   // Get all leaf categories (categories that have links) under a parent category
@@ -149,6 +205,7 @@ const FeelingLucky: NextPage = () => {
     }
 
     setSelectedCategories(newSelected);
+    saveSelectedCategories(newSelected);
   };
 
   // Check if a parent category is fully selected (all its leaf categories are selected)
