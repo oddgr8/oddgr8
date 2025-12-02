@@ -271,17 +271,13 @@ const FeelingLucky: NextPage = () => {
         <div
           key={categoryKey}
           onClick={() => toggleCategory(categoryKey)}
-          className={`cursor-pointer rounded-lg border-2 p-3 transition-all duration-200 ${
-            isSelected
-              ? "border-gray-400 bg-gray-100 shadow-md dark:border-gray-500 dark:bg-gray-700"
-              : "border-gray-200 bg-white hover:border-gray-300 hover:shadow-sm dark:border-gray-700 dark:bg-gray-800 dark:hover:border-gray-600"
-          }`}
+          className="cursor-pointer py-1 transition-colors duration-200"
         >
           <span
             className={`text-sm font-medium ${
               isSelected
-                ? "text-gray-900 dark:text-gray-100"
-                : "text-gray-700 dark:text-gray-300"
+                ? "text-main"
+                : "text-acc-dark hover:text-main dark:text-acc-light"
             }`}
           >
             {categoryKey}
@@ -295,29 +291,20 @@ const FeelingLucky: NextPage = () => {
         isParentCategoryPartiallySelected(categoryKey);
 
       return (
-        <div
-          key={categoryKey}
-          className={`rounded-lg border-2 p-4 transition-all duration-200 ${
-            isFullySelected
-              ? "border-gray-400 bg-gray-100 shadow-lg dark:border-gray-500 dark:bg-gray-700"
-              : isPartiallySelected
-              ? "border-gray-400 bg-gray-50 shadow-md dark:border-gray-500 dark:bg-gray-800"
-              : "border-gray-300 bg-gray-50 hover:border-gray-400 hover:shadow-sm dark:border-gray-600 dark:bg-gray-900 dark:hover:border-gray-500"
-          }`}
-        >
+        <div key={categoryKey} className="mb-4">
           {/* Parent category header */}
-          <div className="mb-3 flex items-center justify-between">
+          <div className="mb-2 flex items-center justify-between">
             <div
               onClick={() => toggleParentCategory(categoryKey)}
-              className="flex flex-1 cursor-pointer items-center space-x-3"
+              className="flex flex-1 cursor-pointer items-center space-x-3 transition-colors duration-200"
             >
               <span
-                className={`text-base font-bold ${
+                className={`text-lg font-bold ${
                   isFullySelected
-                    ? "text-gray-900 dark:text-gray-100"
+                    ? "text-main"
                     : isPartiallySelected
-                    ? "text-gray-700 dark:text-gray-300"
-                    : "text-gray-800 dark:text-gray-200"
+                    ? "text-main opacity-60"
+                    : "text-acc-dark hover:text-main dark:text-acc-light"
                 }`}
               >
                 {categoryKey}
@@ -327,11 +314,7 @@ const FeelingLucky: NextPage = () => {
             {/* Expand/Collapse button */}
             <button
               onClick={() => toggleCategoryExpansion(categoryKey)}
-              className={`flex h-8 w-8 items-center justify-center rounded-full transition-colors ${
-                isExpanded
-                  ? "bg-gray-300 text-gray-700 hover:bg-gray-400 dark:bg-gray-600 dark:text-gray-300 dark:hover:bg-gray-500"
-                  : "bg-gray-200 text-gray-600 hover:bg-gray-300 dark:bg-gray-700 dark:text-gray-400 dark:hover:bg-gray-600"
-              }`}
+              className="text-acc-dark transition-colors duration-200 hover:text-main dark:text-acc-light"
             >
               {isExpanded ? (
                 <svg
@@ -365,9 +348,9 @@ const FeelingLucky: NextPage = () => {
             </button>
           </div>
 
-          {/* Children cards (only show if expanded) */}
+          {/* Children (only show if expanded) */}
           {isExpanded && (
-            <div className="space-y-3 pl-2">
+            <div className="ml-4 space-y-1">
               {Object.entries(categoryValue as Categories).map(
                 ([childKey, childValue]) => (
                   <CategoryTreeNode
