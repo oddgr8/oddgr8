@@ -266,15 +266,20 @@ const FeelingLucky: NextPage = () => {
     if (isLeafCategory) {
       // This is a leaf category (has actual links)
       const isSelected = selectedCategories.has(categoryKey);
+      const isTopLevel = level === 0;
 
       return (
         <div
           key={categoryKey}
           onClick={() => toggleCategory(categoryKey)}
-          className="cursor-pointer py-1 transition-colors duration-200"
+          className={`cursor-pointer transition-colors duration-200 ${
+            isTopLevel ? "mb-4 py-2" : "py-1"
+          }`}
         >
           <span
-            className={`text-sm font-medium ${
+            className={`${
+              isTopLevel ? "text-lg font-bold" : "text-sm font-medium"
+            } ${
               isSelected
                 ? "text-main"
                 : "text-acc-dark hover:text-main dark:text-acc-light"
@@ -547,7 +552,7 @@ const FeelingLucky: NextPage = () => {
             <div className="space-y-6">
               <h3 className="text-center text-lg font-semibold">Categories:</h3>
 
-              <div className="mx-auto max-w-2xl space-y-4">
+              <div className="mx-auto max-w-2xl space-y-4 text-center">
                 {Object.entries(linksData.categories).map(
                   ([categoryKey, categoryValue]) => (
                     <CategoryTreeNode
