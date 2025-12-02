@@ -190,7 +190,7 @@ const FeelingLucky: NextPage = () => {
     setExpandedCategories(newExpanded);
   };
 
-  // Recursive component to render category tree
+  // Recursive component to render category cards
   const CategoryTreeNode = ({
     categoryKey,
     categoryValue,
@@ -204,7 +204,6 @@ const FeelingLucky: NextPage = () => {
     const hasChildren =
       typeof categoryValue === "object" &&
       Object.keys(categoryValue).length > 0;
-    const indent = level * 24;
     const isExpanded = expandedCategories.has(categoryKey);
 
     if (isLeafCategory) {
@@ -212,19 +211,24 @@ const FeelingLucky: NextPage = () => {
       const isSelected = selectedCategories.has(categoryKey);
 
       return (
-        <div key={categoryKey} style={{ marginLeft: `${indent}px` }}>
-          <label className="flex cursor-pointer items-center space-x-2 rounded py-1 transition-colors hover:bg-gray-50 dark:hover:bg-gray-800">
+        <div
+          key={categoryKey}
+          className={`rounded-lg border-2 p-3 transition-all duration-200 ${
+            isSelected
+              ? "border-main bg-main bg-opacity-10 shadow-md"
+              : "border-gray-200 bg-white hover:border-gray-300 hover:shadow-sm dark:border-gray-700 dark:bg-gray-800 dark:hover:border-gray-600"
+          }`}
+        >
+          <label className="flex cursor-pointer items-center space-x-3">
             <input
               type="checkbox"
               checked={isSelected}
               onChange={() => toggleCategory(categoryKey)}
-              className="rounded text-main focus:ring-main"
+              className="h-4 w-4 rounded text-main focus:ring-main"
             />
             <span
-              className={`text-sm ${
-                isSelected
-                  ? "font-medium text-main"
-                  : "text-gray-700 dark:text-gray-300"
+              className={`text-sm font-medium ${
+                isSelected ? "text-main" : "text-gray-700 dark:text-gray-300"
               }`}
             >
               {categoryKey}
@@ -239,19 +243,55 @@ const FeelingLucky: NextPage = () => {
         isParentCategoryPartiallySelected(categoryKey);
 
       return (
-        <div key={categoryKey} className="space-y-1">
-          <div
-            style={{ marginLeft: `${indent}px` }}
-            className="flex items-center space-x-1"
-          >
+        <div
+          key={categoryKey}
+          className={`rounded-lg border-2 p-4 transition-all duration-200 ${
+            isFullySelected
+              ? "border-main bg-main bg-opacity-5 shadow-lg"
+              : isPartiallySelected
+              ? "border-yellow-400 bg-yellow-50 shadow-md dark:bg-yellow-900 dark:bg-opacity-20"
+              : "border-gray-300 bg-gray-50 hover:border-gray-400 hover:shadow-sm dark:border-gray-600 dark:bg-gray-900 dark:hover:border-gray-500"
+          }`}
+        >
+          {/* Parent category header */}
+          <div className="mb-3 flex items-center justify-between">
+            <label className="flex flex-1 cursor-pointer items-center space-x-3">
+              <input
+                type="checkbox"
+                checked={isFullySelected}
+                ref={(input) => {
+                  if (input)
+                    input.indeterminate =
+                      isPartiallySelected && !isFullySelected;
+                }}
+                onChange={() => toggleParentCategory(categoryKey)}
+                className="h-4 w-4 rounded text-main focus:ring-main"
+              />
+              <span
+                className={`text-base font-bold ${
+                  isFullySelected
+                    ? "text-main"
+                    : isPartiallySelected
+                    ? "text-yellow-600 dark:text-yellow-400"
+                    : "text-gray-800 dark:text-gray-200"
+                }`}
+              >
+                {categoryKey}
+              </span>
+            </label>
+
             {/* Expand/Collapse button */}
             <button
               onClick={() => toggleCategoryExpansion(categoryKey)}
-              className="flex h-4 w-4 items-center justify-center text-gray-500 transition-colors hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"
+              className={`flex h-8 w-8 items-center justify-center rounded-full transition-colors ${
+                isExpanded
+                  ? "bg-main bg-opacity-20 text-main hover:bg-opacity-30"
+                  : "bg-gray-200 text-gray-600 hover:bg-gray-300 dark:bg-gray-700 dark:text-gray-400 dark:hover:bg-gray-600"
+              }`}
             >
               {isExpanded ? (
                 <svg
-                  className="h-3 w-3"
+                  className="h-4 w-4"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -265,7 +305,7 @@ const FeelingLucky: NextPage = () => {
                 </svg>
               ) : (
                 <svg
-                  className="h-3 w-3"
+                  className="h-4 w-4"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -279,37 +319,11 @@ const FeelingLucky: NextPage = () => {
                 </svg>
               )}
             </button>
-
-            {/* Parent category checkbox and label */}
-            <label className="flex flex-1 cursor-pointer items-center space-x-2 rounded py-1 transition-colors hover:bg-gray-50 dark:hover:bg-gray-800">
-              <input
-                type="checkbox"
-                checked={isFullySelected}
-                ref={(input) => {
-                  if (input)
-                    input.indeterminate =
-                      isPartiallySelected && !isFullySelected;
-                }}
-                onChange={() => toggleParentCategory(categoryKey)}
-                className="rounded text-main focus:ring-main"
-              />
-              <span
-                className={`text-sm font-semibold ${
-                  isFullySelected
-                    ? "text-main"
-                    : isPartiallySelected
-                    ? "text-yellow-600 dark:text-yellow-400"
-                    : "text-gray-800 dark:text-gray-200"
-                }`}
-              >
-                {categoryKey}
-              </span>
-            </label>
           </div>
 
-          {/* Children (only show if expanded) */}
+          {/* Children cards (only show if expanded) */}
           {isExpanded && (
-            <div className="space-y-1">
+            <div className="space-y-3 pl-2">
               {Object.entries(categoryValue as Categories).map(
                 ([childKey, childValue]) => (
                   <CategoryTreeNode
@@ -487,12 +501,12 @@ const FeelingLucky: NextPage = () => {
             interesting link!
           </p>
 
-          {/* Category Selection Tree */}
+          {/* Category Selection Cards */}
           {linksData && availableCategories.length > 0 && (
-            <div className="space-y-4">
-              <h3 className="text-lg font-semibold">Categories:</h3>
+            <div className="space-y-6">
+              <h3 className="text-center text-lg font-semibold">Categories:</h3>
 
-              <div className="mx-auto max-w-md space-y-2 text-left">
+              <div className="mx-auto max-w-2xl space-y-4">
                 {Object.entries(linksData.categories).map(
                   ([categoryKey, categoryValue]) => (
                     <CategoryTreeNode
@@ -504,7 +518,7 @@ const FeelingLucky: NextPage = () => {
                 )}
               </div>
 
-              <p className="text-sm text-gray-600 dark:text-gray-400">
+              <p className="text-center text-sm text-gray-600 dark:text-gray-400">
                 {selectedCategories.size} of {availableCategories.length}{" "}
                 categories selected
               </p>
