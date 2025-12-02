@@ -213,27 +213,20 @@ const FeelingLucky: NextPage = () => {
       return (
         <div
           key={categoryKey}
-          className={`rounded-lg border-2 p-3 transition-all duration-200 ${
+          onClick={() => toggleCategory(categoryKey)}
+          className={`cursor-pointer rounded-lg border-2 p-3 transition-all duration-200 ${
             isSelected
               ? "border-main bg-main bg-opacity-10 shadow-md"
               : "border-gray-200 bg-white hover:border-gray-300 hover:shadow-sm dark:border-gray-700 dark:bg-gray-800 dark:hover:border-gray-600"
           }`}
         >
-          <label className="flex cursor-pointer items-center space-x-3">
-            <input
-              type="checkbox"
-              checked={isSelected}
-              onChange={() => toggleCategory(categoryKey)}
-              className="h-4 w-4 rounded text-main focus:ring-main"
-            />
-            <span
-              className={`text-sm font-medium ${
-                isSelected ? "text-main" : "text-gray-700 dark:text-gray-300"
-              }`}
-            >
-              {categoryKey}
-            </span>
-          </label>
+          <span
+            className={`text-sm font-medium ${
+              isSelected ? "text-main" : "text-gray-700 dark:text-gray-300"
+            }`}
+          >
+            {categoryKey}
+          </span>
         </div>
       );
     } else if (hasChildren) {
@@ -255,18 +248,10 @@ const FeelingLucky: NextPage = () => {
         >
           {/* Parent category header */}
           <div className="mb-3 flex items-center justify-between">
-            <label className="flex flex-1 cursor-pointer items-center space-x-3">
-              <input
-                type="checkbox"
-                checked={isFullySelected}
-                ref={(input) => {
-                  if (input)
-                    input.indeterminate =
-                      isPartiallySelected && !isFullySelected;
-                }}
-                onChange={() => toggleParentCategory(categoryKey)}
-                className="h-4 w-4 rounded text-main focus:ring-main"
-              />
+            <div
+              onClick={() => toggleParentCategory(categoryKey)}
+              className="flex flex-1 cursor-pointer items-center space-x-3"
+            >
               <span
                 className={`text-base font-bold ${
                   isFullySelected
@@ -278,7 +263,7 @@ const FeelingLucky: NextPage = () => {
               >
                 {categoryKey}
               </span>
-            </label>
+            </div>
 
             {/* Expand/Collapse button */}
             <button
@@ -501,6 +486,20 @@ const FeelingLucky: NextPage = () => {
             interesting link!
           </p>
 
+          <button
+            onClick={handleFeelingLucky}
+            disabled={isRedirecting || selectedCategories.size === 0}
+            className="rounded-lg bg-main px-8 py-3 text-lg font-semibold text-white transition-all duration-200 hover:bg-opacity-80 disabled:cursor-not-allowed disabled:opacity-50"
+          >
+            {isRedirecting ? "Finding..." : "I'm Feeling Lucky!"}
+          </button>
+
+          {selectedCategories.size === 0 && (
+            <p className="text-sm text-red-600 dark:text-red-400">
+              Please select at least one category to continue.
+            </p>
+          )}
+
           {/* Category Selection Cards */}
           {linksData && availableCategories.length > 0 && (
             <div className="space-y-6">
@@ -535,20 +534,6 @@ const FeelingLucky: NextPage = () => {
               </span>
             )}
           </p>
-
-          <button
-            onClick={handleFeelingLucky}
-            disabled={isRedirecting || selectedCategories.size === 0}
-            className="rounded-lg bg-main px-8 py-3 text-lg font-semibold text-white transition-all duration-200 hover:bg-opacity-80 disabled:cursor-not-allowed disabled:opacity-50"
-          >
-            {isRedirecting ? "Finding..." : "I'm Feeling Lucky!"}
-          </button>
-
-          {selectedCategories.size === 0 && (
-            <p className="text-sm text-red-600 dark:text-red-400">
-              Please select at least one category to continue.
-            </p>
-          )}
         </div>
       </div>
     </>
