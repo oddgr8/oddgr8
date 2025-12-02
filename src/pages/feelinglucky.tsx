@@ -273,13 +273,15 @@ const FeelingLucky: NextPage = () => {
           onClick={() => toggleCategory(categoryKey)}
           className={`cursor-pointer rounded-lg border-2 p-3 transition-all duration-200 ${
             isSelected
-              ? "border-main bg-main bg-opacity-10 shadow-md"
+              ? "border-gray-400 bg-gray-100 shadow-md dark:border-gray-500 dark:bg-gray-700"
               : "border-gray-200 bg-white hover:border-gray-300 hover:shadow-sm dark:border-gray-700 dark:bg-gray-800 dark:hover:border-gray-600"
           }`}
         >
           <span
             className={`text-sm font-medium ${
-              isSelected ? "text-main" : "text-gray-700 dark:text-gray-300"
+              isSelected
+                ? "text-gray-900 dark:text-gray-100"
+                : "text-gray-700 dark:text-gray-300"
             }`}
           >
             {categoryKey}
@@ -297,9 +299,9 @@ const FeelingLucky: NextPage = () => {
           key={categoryKey}
           className={`rounded-lg border-2 p-4 transition-all duration-200 ${
             isFullySelected
-              ? "border-main bg-main bg-opacity-5 shadow-lg"
+              ? "border-gray-400 bg-gray-100 shadow-lg dark:border-gray-500 dark:bg-gray-700"
               : isPartiallySelected
-              ? "border-yellow-400 bg-yellow-50 shadow-md dark:bg-yellow-900 dark:bg-opacity-20"
+              ? "border-gray-400 bg-gray-50 shadow-md dark:border-gray-500 dark:bg-gray-800"
               : "border-gray-300 bg-gray-50 hover:border-gray-400 hover:shadow-sm dark:border-gray-600 dark:bg-gray-900 dark:hover:border-gray-500"
           }`}
         >
@@ -312,9 +314,9 @@ const FeelingLucky: NextPage = () => {
               <span
                 className={`text-base font-bold ${
                   isFullySelected
-                    ? "text-main"
+                    ? "text-gray-900 dark:text-gray-100"
                     : isPartiallySelected
-                    ? "text-yellow-600 dark:text-yellow-400"
+                    ? "text-gray-700 dark:text-gray-300"
                     : "text-gray-800 dark:text-gray-200"
                 }`}
               >
@@ -327,7 +329,7 @@ const FeelingLucky: NextPage = () => {
               onClick={() => toggleCategoryExpansion(categoryKey)}
               className={`flex h-8 w-8 items-center justify-center rounded-full transition-colors ${
                 isExpanded
-                  ? "bg-main bg-opacity-20 text-main hover:bg-opacity-30"
+                  ? "bg-gray-300 text-gray-700 hover:bg-gray-400 dark:bg-gray-600 dark:text-gray-300 dark:hover:bg-gray-500"
                   : "bg-gray-200 text-gray-600 hover:bg-gray-300 dark:bg-gray-700 dark:text-gray-400 dark:hover:bg-gray-600"
               }`}
             >
