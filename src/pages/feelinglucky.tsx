@@ -298,60 +298,62 @@ const FeelingLucky: NextPage = () => {
       return (
         <div key={categoryKey} className="mb-4">
           {/* Parent category header */}
-          <div className="relative mb-2 flex items-center justify-center">
-            {/* Centered category name */}
-            <div
-              onClick={() => toggleParentCategory(categoryKey)}
-              className="cursor-pointer transition-colors duration-200"
-            >
-              <span
-                className={`text-lg font-bold ${
-                  isFullySelected
-                    ? "text-main"
-                    : isPartiallySelected
-                    ? "text-main opacity-60"
-                    : "text-acc-dark hover:text-main dark:text-acc-light"
-                }`}
+          <div className="mb-2 flex items-center justify-center">
+            {/* Centered category name and arrow group */}
+            <div className="flex items-center space-x-2">
+              <div
+                onClick={() => toggleParentCategory(categoryKey)}
+                className="cursor-pointer transition-colors duration-200"
               >
-                {categoryKey}
-              </span>
-            </div>
+                <span
+                  className={`text-lg font-bold ${
+                    isFullySelected
+                      ? "text-main"
+                      : isPartiallySelected
+                      ? "text-main opacity-60"
+                      : "text-acc-dark hover:text-main dark:text-acc-light"
+                  }`}
+                >
+                  {categoryKey}
+                </span>
+              </div>
 
-            {/* Expand/Collapse button - positioned absolutely to the right */}
-            <button
-              onClick={() => toggleCategoryExpansion(categoryKey)}
-              className="absolute right-0 text-acc-dark transition-colors duration-200 hover:text-main dark:text-acc-light"
-            >
-              {isExpanded ? (
-                <svg
-                  className="h-4 w-4"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M19 9l-7 7-7-7"
-                  />
-                </svg>
-              ) : (
-                <svg
-                  className="h-4 w-4"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M9 5l7 7-7 7"
-                  />
-                </svg>
-              )}
-            </button>
+              {/* Expand/Collapse button - beside the category name */}
+              <button
+                onClick={() => toggleCategoryExpansion(categoryKey)}
+                className="text-acc-dark transition-colors duration-200 hover:text-main dark:text-acc-light"
+              >
+                {isExpanded ? (
+                  <svg
+                    className="h-4 w-4"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M19 9l-7 7-7-7"
+                    />
+                  </svg>
+                ) : (
+                  <svg
+                    className="h-4 w-4"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M9 5l7 7-7 7"
+                    />
+                  </svg>
+                )}
+              </button>
+            </div>
           </div>
 
           {/* Children (only show if expanded) */}
