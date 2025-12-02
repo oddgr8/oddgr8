@@ -8,10 +8,10 @@
       "KVPY": {}
     },
     "Physics": {
-      "Problem Books": {}
+      "Physics Problem Books": {}
     },
     "Mathematics": {
-      "Problem Books": {}
+      "Mathematics Problem Books": {}
     },
     "Computer Science": {
       "Programming Challenges": {},
@@ -130,15 +130,15 @@
     },
     {
       "url": "https://ia800608.us.archive.org/19/items/IrodovProblemsInGeneralPhysics/Irodov-Problems_in_General_Physics.pdf",
-      "category": "Problem Books"
+      "category": "Physics Problem Books"
     },
     {
       "url": "https://ia601408.us.archive.org/0/items/ProblemsInPhysicsSSKrotov/Problems%20In%20Physics%20SS%20Krotov.pdf",
-      "category": "Problem Books"
+      "category": "Physics Problem Books"
     },
     {
       "url": "https://cdn.bookey.app/files/pdf/book/en/mathematical-circles.pdf",
-      "category": "Problem Books"
+      "category": "Mathematics Problem Books"
     },
     {
       "url": "https://leetcode.com/problemset/?difficulty=HARD",
