@@ -6,9 +6,15 @@ import { titleFont } from "~/shared/fonts";
 
 interface Link {
   url: string;
+  category: string;
+}
+
+interface Categories {
+  [key: string]: Categories | Record<string, never>;
 }
 
 interface LinksData {
+  categories: Categories;
   links: Link[];
 }
 
@@ -18,6 +24,14 @@ const FeelingLucky: NextPage = () => {
   const [info, setInfo] = useState<string | null>(null);
   const [isSafari, setIsSafari] = useState(false);
   const [isClient, setIsClient] = useState(false);
+  const [selectedCategories, setSelectedCategories] = useState<Set<string>>(
+    new Set()
+  );
+  const [availableCategories, setAvailableCategories] = useState<string[]>([]);
+  const [linksData, setLinksData] = useState<LinksData | null>(null);
+  const [expandedCategories, setExpandedCategories] = useState<Set<string>>(
+    new Set()
+  );
 
   // Effect to detect browser type on client side
   useEffect(() => {
@@ -25,6 +39,295 @@ const FeelingLucky: NextPage = () => {
     const userAgent = navigator.userAgent.toLowerCase();
     setIsSafari(userAgent.includes("safari") && !userAgent.includes("chrome"));
   }, []);
+
+  // Effect to load links data and extract categories
+  useEffect(() => {
+    const loadLinksData = async () => {
+      try {
+        const response = await fetch("/feelinglucky/links.json");
+        if (!response.ok) {
+          throw new Error("Failed to fetch links");
+        }
+        const data = (await response.json()) as LinksData;
+        setLinksData(data);
+
+        // Extract all unique categories from links
+        const categories = Array.from(
+          new Set(data.links.map((link) => link.category))
+        );
+        setAvailableCategories(categories.sort());
+
+        // Initially select all categories
+        setSelectedCategories(new Set(categories));
+
+        // Initially expand all parent categories
+        const getAllParentCategories = (
+          cats: Categories,
+          parents: Set<string> = new Set()
+        ): Set<string> => {
+          for (const [key, value] of Object.entries(cats)) {
+            if (typeof value === "object" && Object.keys(value).length > 0) {
+              parents.add(key);
+              getAllParentCategories(value as Categories, parents);
+            }
+          }
+          return parents;
+        };
+
+        setExpandedCategories(getAllParentCategories(data.categories));
+      } catch (err) {
+        setError(
+          err instanceof Error ? err.message : "Failed to load categories"
+        );
+      }
+    };
+
+    void loadLinksData();
+  }, []);
+
+  // Helper functions for category management
+  const toggleCategory = (category: string) => {
+    const newSelected = new Set(selectedCategories);
+    if (newSelected.has(category)) {
+      newSelected.delete(category);
+    } else {
+      newSelected.add(category);
+    }
+    setSelectedCategories(newSelected);
+  };
+
+  // Get all leaf categories (categories that have links) under a parent category
+  const getAllLeafCategories = (
+    categories: Categories,
+    parentKey?: string
+  ): string[] => {
+    const leafCategories: string[] = [];
+
+    const traverse = (cats: Categories) => {
+      for (const [key, value] of Object.entries(cats)) {
+        if (availableCategories.includes(key)) {
+          leafCategories.push(key);
+        }
+        if (
+          typeof value === "object" &&
+          value !== null &&
+          Object.keys(value).length > 0
+        ) {
+          traverse(value as Categories);
+        }
+      }
+    };
+
+    if (parentKey && categories[parentKey]) {
+      traverse(categories[parentKey] as Categories);
+    } else {
+      traverse(categories);
+    }
+
+    return leafCategories;
+  };
+
+  // Toggle all leaf categories under a parent category
+  const toggleParentCategory = (parentKey: string) => {
+    if (!linksData) return;
+
+    const leafCategories = getAllLeafCategories(
+      linksData.categories,
+      parentKey
+    );
+    const newSelected = new Set(selectedCategories);
+
+    // Check if all leaf categories are selected
+    const allSelected = leafCategories.every((cat) => newSelected.has(cat));
+
+    if (allSelected) {
+      // Deselect all leaf categories
+      leafCategories.forEach((cat) => newSelected.delete(cat));
+    } else {
+      // Select all leaf categories
+      leafCategories.forEach((cat) => newSelected.add(cat));
+    }
+
+    setSelectedCategories(newSelected);
+  };
+
+  // Check if a parent category is fully selected (all its leaf categories are selected)
+  const isParentCategorySelected = (parentKey: string): boolean => {
+    if (!linksData) return false;
+
+    const leafCategories = getAllLeafCategories(
+      linksData.categories,
+      parentKey
+    );
+    return (
+      leafCategories.length > 0 &&
+      leafCategories.every((cat) => selectedCategories.has(cat))
+    );
+  };
+
+  // Check if a parent category is partially selected (some but not all leaf categories are selected)
+  const isParentCategoryPartiallySelected = (parentKey: string): boolean => {
+    if (!linksData) return false;
+
+    const leafCategories = getAllLeafCategories(
+      linksData.categories,
+      parentKey
+    );
+    const selectedCount = leafCategories.filter((cat) =>
+      selectedCategories.has(cat)
+    ).length;
+    return selectedCount > 0 && selectedCount < leafCategories.length;
+  };
+
+  // Toggle expanded state of a category
+  const toggleCategoryExpansion = (categoryKey: string) => {
+    const newExpanded = new Set(expandedCategories);
+    if (newExpanded.has(categoryKey)) {
+      newExpanded.delete(categoryKey);
+    } else {
+      newExpanded.add(categoryKey);
+    }
+    setExpandedCategories(newExpanded);
+  };
+
+  // Recursive component to render category tree
+  const CategoryTreeNode = ({
+    categoryKey,
+    categoryValue,
+    level = 0,
+  }: {
+    categoryKey: string;
+    categoryValue: Categories | Record<string, never>;
+    level?: number;
+  }) => {
+    const isLeafCategory = availableCategories.includes(categoryKey);
+    const hasChildren =
+      typeof categoryValue === "object" &&
+      Object.keys(categoryValue).length > 0;
+    const indent = level * 24;
+    const isExpanded = expandedCategories.has(categoryKey);
+
+    if (isLeafCategory) {
+      // This is a leaf category (has actual links)
+      const isSelected = selectedCategories.has(categoryKey);
+
+      return (
+        <div key={categoryKey} style={{ marginLeft: `${indent}px` }}>
+          <label className="flex cursor-pointer items-center space-x-2 rounded py-1 transition-colors hover:bg-gray-50 dark:hover:bg-gray-800">
+            <input
+              type="checkbox"
+              checked={isSelected}
+              onChange={() => toggleCategory(categoryKey)}
+              className="rounded text-main focus:ring-main"
+            />
+            <span
+              className={`text-sm ${
+                isSelected
+                  ? "font-medium text-main"
+                  : "text-gray-700 dark:text-gray-300"
+              }`}
+            >
+              {categoryKey}
+            </span>
+          </label>
+        </div>
+      );
+    } else if (hasChildren) {
+      // This is a parent category
+      const isFullySelected = isParentCategorySelected(categoryKey);
+      const isPartiallySelected =
+        isParentCategoryPartiallySelected(categoryKey);
+
+      return (
+        <div key={categoryKey} className="space-y-1">
+          <div
+            style={{ marginLeft: `${indent}px` }}
+            className="flex items-center space-x-1"
+          >
+            {/* Expand/Collapse button */}
+            <button
+              onClick={() => toggleCategoryExpansion(categoryKey)}
+              className="flex h-4 w-4 items-center justify-center text-gray-500 transition-colors hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"
+            >
+              {isExpanded ? (
+                <svg
+                  className="h-3 w-3"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M19 9l-7 7-7-7"
+                  />
+                </svg>
+              ) : (
+                <svg
+                  className="h-3 w-3"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M9 5l7 7-7 7"
+                  />
+                </svg>
+              )}
+            </button>
+
+            {/* Parent category checkbox and label */}
+            <label className="flex flex-1 cursor-pointer items-center space-x-2 rounded py-1 transition-colors hover:bg-gray-50 dark:hover:bg-gray-800">
+              <input
+                type="checkbox"
+                checked={isFullySelected}
+                ref={(input) => {
+                  if (input)
+                    input.indeterminate =
+                      isPartiallySelected && !isFullySelected;
+                }}
+                onChange={() => toggleParentCategory(categoryKey)}
+                className="rounded text-main focus:ring-main"
+              />
+              <span
+                className={`text-sm font-semibold ${
+                  isFullySelected
+                    ? "text-main"
+                    : isPartiallySelected
+                    ? "text-yellow-600 dark:text-yellow-400"
+                    : "text-gray-800 dark:text-gray-200"
+                }`}
+              >
+                {categoryKey}
+              </span>
+            </label>
+          </div>
+
+          {/* Children (only show if expanded) */}
+          {isExpanded && (
+            <div className="space-y-1">
+              {Object.entries(categoryValue as Categories).map(
+                ([childKey, childValue]) => (
+                  <CategoryTreeNode
+                    key={childKey}
+                    categoryKey={childKey}
+                    categoryValue={childValue}
+                    level={level + 1}
+                  />
+                )
+              )}
+            </div>
+          )}
+        </div>
+      );
+    }
+
+    return null;
+  };
 
   // Helper function to detect browser type
   const getBrowserType = (): string => {
@@ -75,82 +378,74 @@ const FeelingLucky: NextPage = () => {
     }
   };
 
-  const getRandomLink = async (): Promise<string> => {
-    try {
-      // Fetch the links.json file
-      const response = await fetch("/feelinglucky/links.json");
-      if (!response.ok) {
-        throw new Error("Failed to fetch links");
-      }
-
-      const data = (await response.json()) as LinksData;
-      const links = data.links;
-
-      if (links.length === 0) {
-        throw new Error("No links available");
-      }
-
-      // Get a random link
-      const randomIndex = Math.floor(Math.random() * links.length);
-      const randomLink = links[randomIndex];
-      if (!randomLink) {
-        throw new Error("Failed to select random link");
-      }
-      let url = randomLink.url;
-
-      // Check if it's a PDF and add random page parameter
-      if (url.toLowerCase().endsWith(".pdf")) {
-        // Generate a random page number between 1 and 100
-        // Most PDFs should have at least a few pages, and browsers will handle invalid page numbers gracefully
-        const randomPage = Math.floor(Math.random() * 100) + 1;
-        url = addPdfPageNavigation(url, randomPage);
-      }
-
-      return url;
-    } catch (err) {
-      throw new Error(
-        err instanceof Error ? err.message : "Unknown error occurred"
-      );
+  const getRandomLink = (): string => {
+    if (!linksData) {
+      throw new Error("Links data not loaded");
     }
+
+    // Filter links based on selected categories
+    const filteredLinks = linksData.links.filter((link) =>
+      selectedCategories.has(link.category)
+    );
+
+    if (filteredLinks.length === 0) {
+      throw new Error("No links available for selected categories");
+    }
+
+    // Get a random link from filtered results
+    const randomIndex = Math.floor(Math.random() * filteredLinks.length);
+    const randomLink = filteredLinks[randomIndex];
+    if (!randomLink) {
+      throw new Error("Failed to select random link");
+    }
+    let url = randomLink.url;
+
+    // Check if it's a PDF and add random page parameter
+    if (url.toLowerCase().endsWith(".pdf")) {
+      // Generate a random page number between 1 and 100
+      // Most PDFs should have at least a few pages, and browsers will handle invalid page numbers gracefully
+      const randomPage = Math.floor(Math.random() * 100) + 1;
+      url = addPdfPageNavigation(url, randomPage);
+    }
+
+    return url;
   };
 
   const handleFeelingLucky = () => {
-    void (async () => {
-      setIsRedirecting(true);
-      setError(null);
+    setIsRedirecting(true);
+    setError(null);
 
-      try {
-        const randomUrl = await getRandomLink();
-        const browser = getBrowserType();
+    try {
+      const randomUrl = getRandomLink();
+      const browser = getBrowserType();
 
-        // Special handling for Safari with PDFs
-        if (browser === "safari" && randomUrl.toLowerCase().endsWith(".pdf")) {
-          // For Safari, we'll open the PDF and show a helpful message
-          window.open(randomUrl, "_blank", "noopener,noreferrer");
+      // Special handling for Safari with PDFs
+      if (browser === "safari" && randomUrl.toLowerCase().endsWith(".pdf")) {
+        // For Safari, we'll open the PDF and show a helpful message
+        window.open(randomUrl, "_blank", "noopener,noreferrer");
 
-          // Show a brief informational message for Safari users
-          setTimeout(() => {
-            setInfo(
-              "Note: PDF page navigation may not work in Safari. The PDF will open at the beginning."
-            );
-          }, 1000);
+        // Show a brief informational message for Safari users
+        setTimeout(() => {
+          setInfo(
+            "Note: PDF page navigation may not work in Safari. The PDF will open at the beginning."
+          );
+        }, 1000);
 
-          // Clear the message after a few seconds
-          setTimeout(() => {
-            setInfo(null);
-          }, 5000);
-        } else {
-          // For other browsers or non-PDF links, proceed normally
-          window.open(randomUrl, "_blank", "noopener,noreferrer");
-        }
-      } catch (err) {
-        setError(
-          err instanceof Error ? err.message : "Failed to get random link"
-        );
-      } finally {
-        setIsRedirecting(false);
+        // Clear the message after a few seconds
+        setTimeout(() => {
+          setInfo(null);
+        }, 5000);
+      } else {
+        // For other browsers or non-PDF links, proceed normally
+        window.open(randomUrl, "_blank", "noopener,noreferrer");
       }
-    })();
+    } catch (err) {
+      setError(
+        err instanceof Error ? err.message : "Failed to get random link"
+      );
+    } finally {
+      setIsRedirecting(false);
+    }
   };
 
   return (
@@ -186,10 +481,36 @@ const FeelingLucky: NextPage = () => {
           </div>
         )}
 
-        <div className="space-y-4">
+        <div className="space-y-6">
           <p className="text-lg">
-            Click the button below to be taken to a random interesting link!
+            Select categories and click the button to be taken to a random
+            interesting link!
           </p>
+
+          {/* Category Selection Tree */}
+          {linksData && availableCategories.length > 0 && (
+            <div className="space-y-4">
+              <h3 className="text-lg font-semibold">Categories:</h3>
+
+              <div className="mx-auto max-w-md space-y-2 text-left">
+                {Object.entries(linksData.categories).map(
+                  ([categoryKey, categoryValue]) => (
+                    <CategoryTreeNode
+                      key={categoryKey}
+                      categoryKey={categoryKey}
+                      categoryValue={categoryValue}
+                    />
+                  )
+                )}
+              </div>
+
+              <p className="text-sm text-gray-600 dark:text-gray-400">
+                {selectedCategories.size} of {availableCategories.length}{" "}
+                categories selected
+              </p>
+            </div>
+          )}
+
           <p className="text-sm text-gray-600 dark:text-gray-400">
             If it&apos;s a PDF, you&apos;ll be taken to a random page within it.
             <br />
@@ -203,11 +524,17 @@ const FeelingLucky: NextPage = () => {
 
           <button
             onClick={handleFeelingLucky}
-            disabled={isRedirecting}
+            disabled={isRedirecting || selectedCategories.size === 0}
             className="rounded-lg bg-main px-8 py-3 text-lg font-semibold text-white transition-all duration-200 hover:bg-opacity-80 disabled:cursor-not-allowed disabled:opacity-50"
           >
             {isRedirecting ? "Finding..." : "I'm Feeling Lucky!"}
           </button>
+
+          {selectedCategories.size === 0 && (
+            <p className="text-sm text-red-600 dark:text-red-400">
+              Please select at least one category to continue.
+            </p>
+          )}
         </div>
       </div>
     </>
