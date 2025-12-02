@@ -298,10 +298,11 @@ const FeelingLucky: NextPage = () => {
       return (
         <div key={categoryKey} className="mb-4">
           {/* Parent category header */}
-          <div className="mb-2 flex items-center justify-between">
+          <div className="relative mb-2 flex items-center justify-center">
+            {/* Centered category name */}
             <div
               onClick={() => toggleParentCategory(categoryKey)}
-              className="flex flex-1 cursor-pointer items-center space-x-3 transition-colors duration-200"
+              className="cursor-pointer transition-colors duration-200"
             >
               <span
                 className={`text-lg font-bold ${
@@ -316,10 +317,10 @@ const FeelingLucky: NextPage = () => {
               </span>
             </div>
 
-            {/* Expand/Collapse button */}
+            {/* Expand/Collapse button - positioned absolutely to the right */}
             <button
               onClick={() => toggleCategoryExpansion(categoryKey)}
-              className="text-acc-dark transition-colors duration-200 hover:text-main dark:text-acc-light"
+              className="absolute right-0 text-acc-dark transition-colors duration-200 hover:text-main dark:text-acc-light"
             >
               {isExpanded ? (
                 <svg
