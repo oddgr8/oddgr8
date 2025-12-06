@@ -18,6 +18,9 @@ function Themer() {
       toggled={resolvedTheme === "dark"}
       onToggle={() => setTheme(resolvedTheme === "dark" ? "light" : "dark")}
       className="text-4xl"
+      placeholder=""
+      onPointerEnterCapture={() => {}}
+      onPointerLeaveCapture={() => {}}
     />
   );
 }
@@ -31,12 +34,13 @@ function Navbar({
   priv?: boolean;
   withThemer?: boolean;
 }) {
-  const { asPath } = useRouter();
+  const router = useRouter();
   const { status, data } = useSession();
   if (priv)
     if (status !== "authenticated" || !isAuthorized(data.user?.email ?? ""))
       return null;
-  const page = asPath.split("/")[1];
+
+  const page = router.asPath ? router.asPath.split("/")[1] || "" : "";
   return (
     <nav
       className={
