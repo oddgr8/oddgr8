@@ -17,7 +17,12 @@
       "Programming Challenges": {},
       "Conferences": {}
     },
-    "News": {}
+    "News": {},
+    "Economics": {
+      "Economic Data": {},
+      "Economic Theory": {},
+      "Financial Markets": {}
+    }
   },
   "links": [
     {
@@ -391,6 +396,186 @@
     {
       "url": "https://www.usenix.org/conferences",
       "category": "Conferences"
+    },
+    {
+      "url": "https://tradingeconomics.com/indicators",
+      "category": "Economic Data"
+    },
+    {
+      "url": "https://tradingeconomics.com/commodities",
+      "category": "Economic Data"
+    },
+    {
+      "url": "https://www.worldbank.org/en/research",
+      "category": "Economic Data"
+    },
+    {
+      "url": "https://www.imf.org/en/publications",
+      "category": "Economic Data"
+    },
+    {
+      "url": "https://tradingeconomics.com/commodity/gold",
+      "category": "Financial Markets"
+    },
+    {
+      "url": "https://tradingeconomics.com/commodity/crude-oil",
+      "category": "Financial Markets"
+    },
+    {
+      "url": "https://tradingeconomics.com/stocks",
+      "category": "Financial Markets"
+    },
+    {
+      "url": "https://finance.yahoo.com/markets/world-indices/",
+      "category": "Financial Markets"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_stock_market_indices",
+      "category": "Financial Markets"
+    },
+    {
+      "url": "https://www.columbiathreadneedleus.com/institutional/insights/latest-insights?gclsrc=aw.ds&gad_source=1&gad_campaignid=20216396286&gbraid=0AAAAADM77VATN18oqknXI8WjnhxN-krIJ&gclid=Cj0KCQiA6NTJBhDEARIsAB7QHD1X9WoTLd5RtAV5FrC8X1mO3G2jnwj4nTT7lyQoiSBQaZTJxMd8WtQaAhY1EALw_wcB",
+      "category": "Financial Markets"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Monetary_policy",
+      "category": "Economic Theory"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Inflation",
+      "category": "Economic Theory"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_countries_by_central_bank_interest_rates",
+      "category": "Economic Data"
+    },
+    {
+      "url": "https://tradingeconomics.com/country-list/interest-rate",
+      "category": "Economic Data"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_countries_by_current_account_balance",
+      "category": "Economic Data"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Double_deficit_(economics)",
+      "category": "Economic Theory"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Twin_deficits_hypothesis",
+      "category": "Economic Theory"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/National_debt_of_the_United_States",
+      "category": "Economic Data"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/The_World_Factbook",
+      "category": "Economic Data"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/OECD",
+      "category": "Economic Data"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Net_foreign_assets",
+      "category": "Economic Theory"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Remittance",
+      "category": "Economic Theory"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Macroeconomics",
+      "category": "Economic Theory"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/International_finance",
+      "category": "Economic Theory"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Balance_of_trade",
+      "category": "Economic Theory"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Capital_account",
+      "category": "Economic Theory"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Balance_of_payments",
+      "category": "Economic Theory"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Current_account_(balance_of_payments)",
+      "category": "Economic Theory"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Gross_world_product",
+      "category": "Economic Data"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_countries_by_real_GDP_per_capita_growth",
+      "category": "Economic Data"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_countries_by_real_GDP_growth_rate",
+      "category": "Economic Data"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/National_agencies_responsible_for_GDP_measurement",
+      "category": "Economic Data"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/GDP_deflator",
+      "category": "Economic Theory"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Supply_and_demand",
+      "category": "Economic Theory"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Government_spending",
+      "category": "Economic Theory"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Saving",
+      "category": "Economic Theory"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Household_final_consumption_expenditure",
+      "category": "Economic Theory"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Gross_value_added",
+      "category": "Economic Theory"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Gross_domestic_product#Lists_of_countries_by_GDP_per_capita",
+      "category": "Economic Data"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Gross_domestic_product#Standard_of_living",
+      "category": "Economic Theory"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Gross_national_income",
+      "category": "Economic Theory"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Exchange_rate",
+      "category": "Financial Markets"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Purchasing_power_parity",
+      "category": "Economic Theory"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Gross_domestic_product#Relation_to_gross_national_income",
+      "category": "Economic Theory"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_countries_by_GDP_(nominal)",
+      "category": "Economic Data"
     }
   ]
 }
